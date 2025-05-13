@@ -19,4 +19,4 @@ Feel free to **star** or **watch** this repo to get notified about updates.
 
 ## 📄 License
 
-This project will be released under the [MIT License](LICENSE) *(or whichever license you plan to use)*.
+This project will be released under the [MIT License](LICENSE).
