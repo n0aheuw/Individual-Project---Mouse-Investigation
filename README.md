@@ -1,6 +1,6 @@
 # 🚧 Individual Project - Mouse Investigation (WIP) 🚧
 
-Welcome to **Individual Project - Mouse Investigation **! This repository is currently **under construction** and actively being developed. Things might be a little rough around the edges for now, but updates are on the way!
+Welcome to **Individual Project - Mouse Investigation**! This repository is currently **under construction** and actively being developed. Things might be a little rough around the edges for now, but updates are on the way!
 
 ## 📌 About This Project
 
