@@ -8,7 +8,7 @@ This project aims to investigate the existing second-year design project and dev
 
 ## 🛠️ Current Status
 
-- [x] Repo initialized
+- [x] Repo initialised
 - [ ] Upload of final project
 
 ## 📣 Stay Tuned!
