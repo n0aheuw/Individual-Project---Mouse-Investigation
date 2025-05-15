@@ -36,11 +36,11 @@ The University of Bath 'mouse' design project involves a small, motor-driven veh
 ## 📄 Repository Contents
 
 📦 mouse-investigation/
-┣ 📂 Report_LATEX/ # LaTeX source files for the report
-┣ 📂 Report_LATEX/circuits/ # Circuit diagrams and illustrations
-┣ 📂 Report_LATEX/code/ # Source code for control systems and testing
-┣ 📄 final_report.pdf # Final compiled version of the report
-┗ 📄 README.md # This file
+- 📂 Report_LATEX/ # LaTeX source files for the report
+- 📂 Report_LATEX/circuits/ # Circuit diagrams and illustrations
+- 📂 Report_LATEX/code/ # Source code for control systems and testing
+- 📄 final_report.pdf # Final compiled version of the report
+- 📄 README.md # This file
 
 
 ---
