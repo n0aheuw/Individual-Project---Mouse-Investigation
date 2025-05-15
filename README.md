@@ -3,7 +3,6 @@
 ![Project Status](https://img.shields.io/badge/status-completed-brightgreen)
 ![Built With](https://img.shields.io/badge/built%20with-LaTeX-blue)
 ![Final Year Project](https://img.shields.io/badge/university-project-yellow)
-![License](https://img.shields.io/badge/license-academic-lightgrey)
 
 This repository contains the final year individual project report for my **Computer Systems Engineering BEng** degree at the **University of Bath**. The project investigates enhancements to the University’s existing 'mouse' design project, focusing on improving the control systems, integrating additional feedback mechanisms, and reducing power supply requirements within the system.
 
@@ -75,6 +74,16 @@ For questions or collaborations, feel free to connect via [LinkedIn](https://www
 
 ---
 
-📜 License
+## 📜 License
 
-This project is provided for academic and reference purposes only. No warranty is provided, and it is not intended for commercial use.
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+
+You are free to:
+
+- **Share** — copy and redistribute the material in any medium or format.
+- **Adapt** — remix, transform, and build upon the material.
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+- **NonCommercial** — You may not use the material for commercial purposes.
