@@ -50,7 +50,7 @@ The University of Bath 'mouse' design project involves a small, motor-driven veh
 1. **Download the repository**:
 
    ```bash
-   git clone https://github.com/n0aheuw/mouse-investigation.git
+   git clone https://github.com/n0aheuw/Individual-Project---Mouse-Investigation.git
 
 2. Open the final_report.pdf file to view the full project documentation.
 
