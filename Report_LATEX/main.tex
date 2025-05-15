@@ -1,0 +1,351 @@
+\documentclass[11pt,a4paper, margin=20mm]{report}
+\usepackage{graphicx}
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=1cm]{geometry}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\usepackage{subcaption}
+\usepackage{tikz,graphics,color,fullpage,epsf,caption,subcaption}
+\usepackage{wrapfig}
+\usepackage{indentfirst}
+\usepackage{textgreek}
+\usepackage{gensymb}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage[none]{hyphenat}
+\usepackage[numbers]{natbib}
+\usepackage{titlesec}
+\usepackage[toc,page]{appendix}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{lscape}
+\usepackage{pdfpages,caption,geometry}
+\usepackage{datetime}
+
+
+
+\newcommand{\titlestr}{Review of Feedback Options for an Accurately Controlled Mouse}
+\newcommand{\authorstr}{Noah Johnson}
+
+\newcommand{\nocontentsline}[3]{}
+\let\origcontentsline\addcontentsline
+\newcommand\stoptoc{\let\addcontentsline\nocontentsline}
+\newcommand\resumetoc{\let\addcontentsline\origcontentsline}
+
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    allcolors=blue,  %choose some color if you want links to stand out
+}
+
+\titleformat{\chapter}{}{}{0em}{\bf\LARGE}
+\setcounter{tocdepth}{2} % + subsections
+
+
+\renewcommand{\listtablename}{Tables}
+\renewcommand{\listfigurename}{Figures}
+
+\makeglossaries
+\newacronym{ac}{AC}{Alternating Current}
+\newacronym{dc}{DC}{Direct Current}
+\newacronym{gnd}{GND}{Ground}
+\newacronym{ir}{IR}{Infra Red}
+\newacronym{rpm}{RPM}{Revolutions Per Minute}
+\newacronym{lsb}{LSB}{Least Significant Bit}
+\newacronym{pwm}{PWM}{Pulse Width Modulation}
+\newacronym{emi}{EMI}{Electro Magnetic Interference}
+\newacronym{bjt}{BJT}{Bipolar Junction Transistor}
+\newacronym{adc}{ADC}{Analogue to Digitial Converter}
+\newacronym{emf}{EMF}{Electro Magnetic Force or Electro Motive Force (Voltage), depending on context}
+\newacronym{mosfet}{MOSFET}{Metal Oxide Semiconductor Field Effect Transistor}
+
+
+\pagenumbering{gobble}
+
+
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.5\textwidth]{photos/Uni of Bath logo (slate).png}
+
+  \vspace{1cm}
+  {\LARGE \bf{\titlestr} \par}
+  
+  \vspace{.5cm}
+  {\LARGE {\it{BEng Final Project Report : 2025} \\ (Computer Systems Engineering BEng)}\par}
+
+  \vspace{1cm}
+  {\Large \authorstr \par}
+
+  {\bf 219530358}
+
+  \vspace{1cm}
+  \today
+
+  \vspace{1cm}
+  {\bf{Supervisor: Dr Francis Robinson}\hspace{3cm}{Assessor: Dr Stephen Pennock}}
+  \vfill
+  
+  \vspace{2cm}
+  {{Main Body Word Count: 8995}\hspace{3cm}{Abstract Word Count: 127}}
+
+  \vspace{2cm}
+  {{This Project was approved by the Ethics department.\\Reference: \bf{9890-11232}}\par}
+\end{titlepage}
+
+
+\begin{abstract}
+ The `mouse' is a second-year group design project. The goal was to investigate ways of improving the `mouse' control loops and reducing its power supply requirements. The aims and objectives were defined as battery reduction, introduction of motor current feedback and wheel speed feedback, accounting for cost, stability and ease of integration. Seven designs were considered; however, only three are recommended as a starting point for future autonomous `mouse' development. The three suggested designs are a simple negative rail generator, low-side current sensing and magnetic speed feedback. All designs were tested and the performance of the three recommended designs was the most satisfactory in terms of accuracy and stability. In addition, the three designs will have a minimal effect on `mouse' cost and are simple to integrate.
+ 
+ \end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\glsaddall
+\printglossary[type=\acronymtype,title=Acronyms]
+
+\stoptoc
+
+{\let\clearpage\relax\section*{\textbf{Definitions}}}
+\textbf{Magnetic Field}, H in units of Amps per metre (A/m).
+
+\vspace{1em}
+
+\textbf{Magnetic Flux,} B in units of Tesla (B = \(\mu_0\)).
+
+\vspace{1em}
+
+Permiabilty of a vacuum, \(\mu_0=4*\pi*10^{-7}\) (H/m).
+\resumetoc
+\pagenumbering{arabic}
+\titlespacing{\chapter}{0pt}{10pt}{10pt}
+\setcounter{chapter}{0}
+
+\include{01_intro_context}
+
+\include{02_pos_feedback}
+
+\include{03_speed_feedback}
+
+\include{04_current}
+
+\include{05_conclusions}
+
+
+
+\newcommand{\BIBdecl}{\setlength{\itemsep}{0.25 em}\addcontentsline{toc}{chapter}{Bibliography}}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+
+
+
+
+\appendix
+\chapter{Appendices}
+\section{Project Costs}
+
+\begin{table}[H]
+\centering
+\caption{Total Project Costs}
+\label{tab:cots_tot}
+\begin{tabular}{|l ||l |l |l|} \hline 
+\textbf{Item} & \textbf{Quantity} & \textbf{Cost} & \textbf{Total Cost} \\ \hline 
+100nF Ceramic Disc Capacitor (50V) & 7 & £0.17 & £1.19 \\ \hline 
+100nF Polyester Capacitor & 2 & £0.49 & £0.97 \\ \hline 
+10kΩ Through-Hole Resistor & 3 & £0.07 & £0.21 \\ \hline 
+10nF Polyester Capacitor & 1 & £0.11 & £0.11 \\ \hline 
+1kΩ Resistor & 7 & £0.16 & £1.13 \\ \hline 
+1N4001 Diode & 2 & £0.10 & £0.21 \\ \hline 
+1N4148 Signal Diode & 2 & £0.01 & £0.02 \\ \hline 
+1μF Electrolytic Capacitor & 1 & £0.22 & £0.22 \\ \hline 
+1Ω Resistor & 10 & £0.16 & £1.62 \\ \hline 
+2.2nF Ceramic Capacitor & 1 & £0.07 & £0.07 \\ \hline 
+2.4V Zener Diode & 1 & £0.13 & £0.13 \\ \hline 
+33nF Capacitor (Polyester, 100V) & 2 & £0.12 & £0.24 \\ \hline 
+4.7μF Electrolytic Capacitor & 1 & £0.21 & £0.21 \\ \hline 
+47kΩ Resistor  & 1 & £0.17 & £0.17 \\ \hline 
+5.6kΩ Resistor & 1 & £0.11 & £0.11 \\ \hline 
+51kΩ Resistor & 2 & £0.05 & £0.11 \\ \hline 
+8.2V Zener Diode & 1 & £0.12 & £0.12 \\ \hline 
+9V Battery (RS PRO Alkaline) & 1 & £2.08 & £2.08 \\ \hline 
+Allegro Microsystems Through Hole Hall Effect Sensor & 5 & £0.61 & £3.05 \\ \hline 
+Arduino Nano Every & 9 & £11.55 & £103.95 \\ \hline 
+IRLZ44N N-Channel MOSFET & 4 & £0.72 & £2.87 \\ \hline 
+NE555P Timer IC & 1 & £0.15 & £0.15 \\ \hline 
+NiMH 1.2V AA Batteries & 4 & £2.24 & £8.97 \\ \hline 
+RS PRO Neodymium Magnet 0.09kg, Width 3mm. & 1 & £4.69 & £4.69 \\ \hline 
+RS PRO Tachometer Reflective Tape. & 1 & £8.24 & £8.24 \\ \hline 
+Single Core Wire (Various Lengths) & 1 & £15.00 & £15.00 \\ \hline 
+TCRT5000 Module Switch Electronics & 4 & £1.37 & £5.48 \\ \hline 
+TL071 Op-Amp (Single BiFET) & 2 & £0.45 & £0.90 \\\hline\hline
+\textbf{Total Project Cost} &  &  & \textbf{£162.21} \\ \hline
+
+\end{tabular}
+
+\end{table}
+
+Table \ref{tab:cots_tot} details the total project costs; items such as battery cradles and breadboard jumper wires have not been included due to them being borrowed and returned to EEE stores. I estimate the time contribution from Lab Technicians to be 2 hours. 
+
+\newpage
+\section{Original Sub-System Estimated Cost}
+\label{app:mouseecost_og}
+\begin{table}[H]
+    \centering
+    \caption[Estimated Cost of Position Feedback Sub-System ]{Estimated cost of position feedback sub-system without LC filter, adapted from the circuit and cost appendix seen in \cite{Noah2023}.}
+    \begin{tabular}{|l|c|c|c|}
+    \hline
+    \textbf{Component} & \textbf{Quantity} & \textbf{Unit Price (£)} & \textbf{Total Price (£)}\\ \hline
+    33nF Capacitor & 2 & 0.12 & 0.24\\ \hline
+    100nF Capacitor & 2 & 0.17 & 0.34\\ \hline
+    TL071 OpAmp & 2 & 0.45 & 0.90\\ \hline
+    1N4148 Signal Diode & 4 & 0.01 & 0.04\\ \hline
+    4.7kΩ Resistor & 2 & 0.02 & 0.04\\ \hline
+    470kΩ Potentiometer & 2 & 0.85 & 1.70\\ \hline
+    9V Batteries & 2 & 2.08 & 4.16\\ \hline\hline
+    \textbf{Total Estimated Cost} &&& \textbf{£7.38}\\ \hline
+    \end{tabular}
+\end{table}
+\begin{table}[H]
+    \centering
+    \caption[Estimated Cost of Motor Drive Sub-System ]{Estimated cost of motor drive sub-system, adapted from the circuit and cost appendix seen in \cite{Noah2023}.}
+    \begin{tabular}{|l|c|c|c|}
+    \hline
+    \textbf{Component} & \textbf{Quantity} & \textbf{Unit Price (£)} & \textbf{Total Price (£)}\\ \hline
+    100nF Capacitor & 2 & 0.486 & 0.972\\ \hline
+    1N4148 Signal Diode & 2 & 0.01 & 0.02\\ \hline
+    TIP120 & 2 & 0.26 & 0.52\\ \hline
+    NiMH 1.2V AA Batteries & 4 & 2.243 & 8.972\\ \hline\hline
+    \textbf{Total Estimated Cost} &&& \textbf{£10.48}\\ \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+\section{Arduino Program Code}
+\label{app:Arduino}
+\lstinputlisting[language=C,caption={RPM Calculation utilising interupts on the Arduino Nano Every},label=cod:RPM]{code/feedback.ino}
+\indent\makebox[\linewidth]{\rule{0.8\paperwidth}{0.4pt}}
+\lstinputlisting[language=C,caption={Current Calulation using One Refernce point Arduino Nano Every},label=cod:current_1ref]{code/current2.ino}
+
+\section{Equipment and Testing}
+\label{app:equip&test}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth,]{photos/rh32.jpg}
+    \caption{RH-32 Breadboard}
+    \label{fig:bread}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{photos/multi.jpeg}
+    \caption{34450A KeySight Multi-meter}
+    \label{fig:multi_m}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{photos/oscill.jpeg}
+    \caption{DSO1014A Oscilloscope}
+    \label{fig:osc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{photos/signal.jpeg}
+    \caption{AFG2021 Signal Generator}
+    \label{fig:signalgen}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{photos/powersupply.jpeg}
+    \caption{Lab KeySight E3631A DC Power supply}
+    \label{fig:power_sup}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth, angle= -90]{photos/tach.jpeg}
+    \caption{AT-6 Tachometer}
+    \label{fig:tach}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{photos/hesang1.jpeg}
+        \caption{HES Distance Angle 1}
+        \label{fig:hes_ang1}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{photos/hesang2.jpeg}
+        \caption{HES Distance Angle 2}
+        \label{fig:hes_ang2}
+    \end{subfigure}
+    \caption{Hall-Effect Sensor Distance at Different Angles}
+    \label{fig:hes_distance_measurements}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{photos/optang1.jpeg}
+        \caption{Optical Distance Angle 1}
+        \label{fig:opt_ang1}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{photos/optang2.jpeg}
+        \caption{Optical Distance Angle 2}
+        \label{fig:opt_ang2}
+    \end{subfigure}
+    \caption{Optical Sensor Distance at Different Angles}
+    \label{fig:opt_distance_measurements}
+\end{figure}
+
+
+\section{Data}
+\label{app:data}
+\includepdf[pages=1,landscape=true]{appendix data/Collation - RPM.pdf}
+\addcontentsline{lot}{table}{A.4\hspace{0.5em}Hall-Effect Sensor and Tachometer RPM Readings}
+\label{tab:A.4}
+\addcontentsline{lot}{table}{A.5\hspace{0.5em}Hall-Effect Sensor Working Distance}
+\label{tab:A.5}
+\addcontentsline{lot}{table}{A.6\hspace{0.5em}Optical Sensor and Tachometer RPM Readings}
+\label{tab:A.6}
+\addcontentsline{lot}{table}{A.7\hspace{0.5em}Optical Sensor Sensor Working Distance}
+\label{tab:A.7}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{photos/WhatsApp Image 2025-05-07 at 12.31.21.jpeg}
+    \caption[Motor Back EMF Oscilloscope]{Oscilloscope response over the motor at 50\% duty cycle, demonstrating the issues encountered with back EMF from the motor.}
+    \label{fig:osc_emf}
+\end{figure}
+
+\includepdf[pages=-,landscape=true]{appendix data/Collation - LowSide.pdf}
+\addcontentsline{lot}{table}{A.8\hspace{0.5em}Low Side Current and Voltage Measurements}
+\label{tab:A.8}
+\addcontentsline{lot}{table}{A.9\hspace{0.5em}Low Side Current Measurements with pressure}
+\label{tab:A.9}
+\addcontentsline{lot}{table}{A.10\hspace{0.5em}Low Side Voltage Measurements with 1 k\(\Omega\) resistor}
+\label{tab:A.10}
+\addcontentsline{lot}{table}{A.11\hspace{0.5em}High Side Current and Voltage Measurements}
+\label{tab:A.11}
+\addcontentsline{lot}{table}{A.12\hspace{0.5em}High Side Current Measurements with pressure}
+\label{tab:A.12}
+\addcontentsline{lot}{table}{A.13\hspace{0.5em}High Side Voltage Measurements with 1 k\(\Omega\) resistor}
+\label{tab:A.13}
+
+\includepdf[pages=-,landscape=true]{appendix data/Collation - HighSide.pdf}
+
+
+\end{document}

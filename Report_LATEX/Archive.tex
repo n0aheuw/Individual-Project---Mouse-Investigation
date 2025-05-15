@@ -1,0 +1,47 @@
+\subsection{Intial Design Concepts}
+The positional feedback sub-sytem must process the low-volatge AC signal from the bandpassfilter, ranging from \(0\rightarrow100mVpp\) requiring amplification prior to signal conditioning. To achieve a measurable output voltage a closed loop operational amplifier circuit is utilised. The two options 
+
+
+
+Design A was built on a breadboard following the design in Figure \ref{}. Firstly, the TL071 op-amp was inserted across the central channel and the \(9V\) power supply was connected to pin 7 (\(+ve\) supply rail) and the power GND was connected to pin 4 (\(-ve\) supply rail). Next the gain stage of the amplifier was assembled with R5 and R6 being connected as shown in Figure \ref{} making sure all connections made to the inverting input (pin 2) were as short as possible to reduce parasitic capacitance as suggested by Texas Instruments \cite[Section 9.6]{TI_TL071}.
+
+Following on, the \(4.5V\) GND voltage divider was assembled to create the new GND reference at \(4.5V\) potential difference. The \(4.5V\) GND reference was then connected to the non-inverting input of the op amp on pin 3. Afterwards the peak detector was built making sure the anode of the diode was facing towards the TL071 output on pin 6 and its cathode was connected to the capacitor (C6). The remaining capacitor pin was connected to the \(4.5V\) GND rail. Lastly, the 20kHz LC filter and signal voltage divider were built connecting the circuit as shown in Figure \ref{} with V1 being replaced by the output of a AFG2021 signal generator. Furthermore, the output of the signal generator was attached to the input of Channel 1 on a KeySight DSO1014A oscilloscope.
+
+Finally, ?????
+Lastly, the 20kHz LC filter and signal voltage divider were built connecting the circuit as shown in Figure \ref{} with V1 being replaced by the output of a AFG2021 signal generator. Furthermore, the output of the signal generator was attached to the input of Channel 1 on a KeySight DSO1014A oscilloscope.
+
+First the \(9V\),\(4.5V\) Common Reference and \(9V\) GND were verified using a KeySight 34450A multimeter. Measurements were taken after a 5-second stabilization period to minimise transient effects.
+
+Finally, the signal generator was turned on and set to high impedance output with a frequency of \(20kHZ\) and a peak to peak voltage of \(100mV\). Channel 2 on the oscilloscope was connected to the LC filter output and Channel 3 on the KeySight DSO1014A oscilloscope was connected to the `Positional\_Output', connecting both probe reference clips to the GND reference voltage. The steady-state waveform was observed and stored as a CSV for later analysis. After the initial analysis the oscilloscope probes were disconnected and the multimeter was connected with the positive input on `Positional\_Output' and the GND input on the reference GND. The steady-state voltage was recorded and then the peak to peak voltage was reduced by \(10mV\), the new steady-state voltage was recorded and then the peak to peak voltage was reduced again repeating until it reached \(10mVpp\). In addition, the output of the TL071 was measured when no input signal was applied to check for a potential failure mode.
+
+
+
+Design B was built on a breadboard following the design in Figure \ref{}. Firstly the 555 timer circuit was assembled placing the LM555 over the central channel making sure to that all bypass capacitor connections were kept short as suggested by Texas Instruments \cite[Section 10]{TI_LM555}. After this the charge pump was built carefully orientating the anodes and cathodes of the diodes correctly. The \(9V\) supply rail was then connected and the \(-5V\) was connected to a separate supply rail to create the negative supply. Following on the supply rails were verified using a KeySight 34450A multimeter.
+
+Once the supply rails were verified the TL071 op-amp circuit was built following Figure \ref{} making sure to place the op amp over the central channel and keeping connections short as previously mentioned in Section \ref{sec:volt_div}. The new supply rails were connected to the negative and positive supply inputs respectively.
+
+
+
+\subsection{Overview}
+Three possible design solutions were proposed to facilitate the operation of the positional feedback system from a single DC supply of \(9V\). Each design was intended to allow the system to interface with a low-level input signal and deliver a conditioned output suitable for subsequent stages. Design A used a simple voltage divider approach, Design B implemented a 555 timer-based charge pump, and Design C was based on a positive precision diode clamper configuration. Designs A and B were built and tested using physical components. Design C was assessed theoretically and excluded from practical testing due to component limitations. 
+
+This section evaluates the performance of each design based on testing outcomes, simplicity, and cost of implementation. Additionally, uncertainties, limitations in available data, and the potential implications of these on project outcomes were critically assessed.
+
+
+
+
+
+
+
+, pp. 22--25
+
+
+
+
+
+FIGURES
+
+The input peak voltage was varied using a signal generator, and the corresponding output was measured via KeySight 34450A multimeter. The graph shows a near-linear relationship within the TL071 operational range.
+
+
+ The input peak voltage was varied using a signal generator, and the corresponding output was measured via KeySight 34450A multimeter. The graph shows a near-linear relationship within the TL071 operational range.
